@@ -47,7 +47,7 @@ export default function Instructions(props) {
         </div>
         <Box sx={{ ...codeBlockStyle, width: "fit-content", ml: 2 }}>
           <Typography variant="body1">
-            for /L %i in (1, 1, 3) do (mlc.exe --loaded_latency {">>"}{" "}
+            for /L %i in (1, 1, 3) do (mlc.exe --loaded_latency -t10 {">>"}{" "}
             result.txt)
           </Typography>
         </Box>
