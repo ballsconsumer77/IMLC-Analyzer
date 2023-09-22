@@ -39,8 +39,8 @@ export default function Instructions(props) {
           .
         </div>
         <div>
-          2. Open CMD as administrator and CD to the directory where mlc.exe is
-          located.
+          2. Open CMD as administrator and CD to the directory where mlc.exe and
+          mlcdrv.sys are located.
         </div>
         <div>
           3. Run the command below to benchmark 3 trials, the tool will average
@@ -48,8 +48,8 @@ export default function Instructions(props) {
         </div>
         <Box sx={{ ...codeBlockStyle, width: "fit-content", ml: 2 }}>
           <Typography variant="body1">
-            for /L %i in (1, 1, 3) do (mlc.exe --loaded_latency -t10 {">>"}{" "}
-            result.txt)
+            for /L %i in (1, 1, 3) do (mlc.exe --loaded_latency -e0 -t10 -W5
+            {">>"} result.txt)
           </Typography>
         </Box>
         <div>4. Upload the files to this page to visualize the results.</div>
