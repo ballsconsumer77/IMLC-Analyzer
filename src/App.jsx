@@ -1,10 +1,11 @@
-import { Grid, Typography } from "@mui/material";
-
-// eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
+import Grid from "@mui/material/Grid";
 import Instructions from "./components/Instructions.jsx";
 import LineGraph from "./components/LineGraph.jsx";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
+
+// eslint-disable-next-line no-unused-vars
 
 export default function App() {
   const [isParsingFiles, setIsParsingFiles] = useState(false);

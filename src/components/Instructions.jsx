@@ -1,7 +1,8 @@
-import { Box, Link, Typography } from "@mui/material";
-
+import Box from "@mui/material/Box";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { LoadingButton } from "@mui/lab";
+import Link from "@mui/material/Link";
+import LoadingButton from "@mui/lab/LoadingButton";
+import Typography from "@mui/material/Typography";
 import styled from "@emotion/styled";
 
 const codeBlockStyle = {
