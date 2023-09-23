@@ -5,8 +5,6 @@ import LineGraph from "./components/LineGraph.jsx";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
-// eslint-disable-next-line no-unused-vars
-
 export default function App() {
   const [isParsingFiles, setIsParsingFiles] = useState(false);
 
