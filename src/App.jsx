@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { Chart as ChartJS } from "chart.js/auto";
 import Grid from "@mui/material/Grid";
 import Instructions from "./components/Instructions.jsx";
@@ -122,22 +123,27 @@ export default function App() {
 
   return (
     <Grid container>
-      <Grid container item justifyContent="center" mb={2} mt={1}>
-        <Typography variant="h4">
+      <Grid container justifyContent="center">
+        <Typography variant="h4" mb={1}>
           Intel® Memory Latency Checker (IMLC) Analyzer
         </Typography>
       </Grid>
-      <Grid item xs={12}>
-        <Instructions isParsingFiles={isParsingFiles} parseFiles={parseFiles} />
+      <Grid xs={12}>
+        <Box mb={2}>
+          <Instructions
+            isParsingFiles={isParsingFiles}
+            parseFiles={parseFiles}
+          />
+        </Box>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid xs={12} md={6}>
         <LineGraph
           dataset={latencyData}
           yTitle="Latency (nanoseconds)"
           xTitle="Inject Delay"
         />
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid xs={12} md={6}>
         <LineGraph
           dataset={bandwidthData}
           yTitle="Bandwidth (MB/s)"
