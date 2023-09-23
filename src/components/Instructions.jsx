@@ -68,6 +68,7 @@ export default function Instructions(props) {
         Upload Results
         <VisuallyHiddenInput
           type="file"
+          accept=".txt"
           multiple
           onChange={(e) => {
             props.parseFiles(Array.from(e.target.files));
