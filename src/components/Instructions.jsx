@@ -43,23 +43,26 @@ export default function Instructions(props) {
           mlcdrv.sys are located.
         </div>
         <div>
-          3. Run the command below to benchmark 3 trials, the tool will average
-          the results. Change the amount of trials and file name if desired.
+          3. Change the file name in the command below if desired then run it to
+          start the benchmark.
         </div>
         <Box sx={{ ...codeBlockStyle, width: "fit-content", ml: 2 }}>
           <Typography variant="body1">
-            for /L %i in (1, 1, 3) do (mlc.exe --loaded_latency -e0 -t10 -W5
-            {">>"} result.txt)
+            mlc.exe --loaded_latency -e0 -t25 -W5 {">>"} result.txt
           </Typography>
         </Box>
-        <div>4. Upload the files to this page to visualize the results.</div>
+        <div>
+          4. To obtain an average, write multiple tests to the same text file to
+          mitigate systematic error (e.g. between system restarts).
+        </div>
+        <div>5. Upload the files to visualize the results.</div>
       </Typography>
       <LoadingButton
         component="label"
         variant="contained"
         loading={props.isParsingFiles}
         loadingPosition="end"
-        sx={{ ml: 2, mt: 1 }}
+        sx={{ ml: 2, mt: 1, mb: 1 }}
         endIcon={<CloudUploadIcon />}
       >
         Upload Results
