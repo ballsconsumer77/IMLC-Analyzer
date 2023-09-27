@@ -6,6 +6,10 @@ import LineGraph from "./components/LineGraph.jsx";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
+const datasetTemplate = {
+  pointRadius: 2,
+};
+
 export default function App() {
   const [isParsingFiles, setIsParsingFiles] = useState(false);
 
@@ -89,6 +93,7 @@ export default function App() {
             !latencyDatasets.some((dataset) => dataset["label"] === fileName)
           ) {
             latencyDatasets.push({
+              ...datasetTemplate,
               label: fileName,
               data: averageLatencies,
             });
@@ -98,6 +103,7 @@ export default function App() {
             !bandwidthDatasets.some((dataset) => dataset["label"] === fileName)
           ) {
             bandwidthDatasets.push({
+              ...datasetTemplate,
               label: fileName,
               data: averageBandwidths,
             });
