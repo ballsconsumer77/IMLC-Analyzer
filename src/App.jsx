@@ -1,27 +1,33 @@
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+
 import { Chart as ChartJS } from "chart.js/auto";
 import Grid from "@mui/material/Grid";
 import Instructions from "./components/Instructions.jsx";
 import LineGraph from "./components/LineGraph.jsx";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
 
 const datasetTemplate = {
   pointRadius: 2,
 };
 
+const initialData = {
+  labels: [],
+  datasets: [],
+};
+
 export default function App() {
   const [isParsingFiles, setIsParsingFiles] = useState(false);
 
-  const [latencyData, setLatencyData] = useState({
-    labels: [],
-    datasets: [],
-  });
+  const [latencyData, setLatencyData] = useState(initialData);
+  const [bandwidthData, setBandwidthData] = useState(initialData);
 
-  const [bandwidthData, setBandwidthData] = useState({
-    labels: [],
-    datasets: [],
-  });
+  function ClearAllData() {
+    setLatencyData(initialData);
+    setBandwidthData(initialData);
+  }
+
+  const resultsRef = useRef(null);
 
   const results = {};
 
@@ -139,22 +145,26 @@ export default function App() {
           <Instructions
             isParsingFiles={isParsingFiles}
             parseFiles={parseFiles}
+            resultsRef={resultsRef}
+            clearAllData={ClearAllData}
           />
         </Box>
       </Grid>
-      <Grid xs={12} md={6}>
-        <LineGraph
-          dataset={latencyData}
-          yTitle="Latency (nanoseconds)"
-          xTitle="Inject Delay"
-        />
-      </Grid>
-      <Grid xs={12} md={6}>
-        <LineGraph
-          dataset={bandwidthData}
-          yTitle="Bandwidth (MB/s)"
-          xTitle="Inject Delay"
-        />
+      <Grid xs={12} ref={resultsRef}>
+        <Grid xs={12} m={5}>
+          <LineGraph
+            dataset={latencyData}
+            yTitle="Latency (nanoseconds)"
+            xTitle="Inject Delay"
+          />
+        </Grid>
+        <Grid xs={12} m={5}>
+          <LineGraph
+            dataset={bandwidthData}
+            yTitle="Bandwidth (MB/s)"
+            xTitle="Inject Delay"
+          />
+        </Grid>
       </Grid>
     </Grid>
   );

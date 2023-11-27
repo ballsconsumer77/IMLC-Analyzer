@@ -1,9 +1,15 @@
+import { Button, Grid } from "@mui/material";
+
 import Box from "@mui/material/Box";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import DownloadIcon from "@mui/icons-material/Download";
 import Link from "@mui/material/Link";
 import LoadingButton from "@mui/lab/LoadingButton";
 import Typography from "@mui/material/Typography";
+import html2canvas from "html2canvas";
 import styled from "@emotion/styled";
+import { useState } from "react";
 
 const codeBlockStyle = {
   padding: 1,
@@ -28,6 +34,8 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 export default function Instructions(props) {
+  const [uploadedItems, setUploadedItems] = useState(0);
+
   return (
     <Box sx={{ ...codeBlockStyle }}>
       <Typography variant="body1" component="span" paragraph>
@@ -48,7 +56,7 @@ export default function Instructions(props) {
         </div>
         <Box sx={{ ...codeBlockStyle, width: "fit-content", ml: 2 }}>
           <Typography variant="body1">
-            mlc.exe --loaded_latency -e0 -t25 -W5 {">>"} result.txt
+            .\mlc.exe --loaded_latency -e0 -t25 -W5 {">>"} result.txt
           </Typography>
         </Box>
         <div>
@@ -57,24 +65,56 @@ export default function Instructions(props) {
         </div>
         <div>5. Upload the files to visualize the results.</div>
       </Typography>
-      <LoadingButton
-        component="label"
-        variant="contained"
-        loading={props.isParsingFiles}
-        loadingPosition="end"
-        sx={{ ml: 2, mt: 1, mb: 1 }}
-        endIcon={<CloudUploadIcon />}
-      >
-        Upload Results
-        <VisuallyHiddenInput
-          type="file"
-          accept=".txt"
-          multiple
-          onChange={(e) => {
-            props.parseFiles(Array.from(e.target.files));
+      <Grid container>
+        <LoadingButton
+          component="label"
+          variant="contained"
+          loading={props.isParsingFiles}
+          loadingPosition="end"
+          sx={{ ml: 2, mt: 1, mb: 1 }}
+          endIcon={<CloudUploadIcon />}
+        >
+          Upload Results
+          <VisuallyHiddenInput
+            type="file"
+            accept=".txt"
+            multiple
+            onChange={(e) => {
+              setUploadedItems(e.target.files.length);
+              props.parseFiles(Array.from(e.target.files));
+            }}
+          />
+        </LoadingButton>
+        <Button
+          disabled={uploadedItems < 1}
+          onClick={() => props.clearAllData()}
+          variant="contained"
+          sx={{ ml: 2, mt: 1, mb: 1 }}
+          endIcon={<ClearAllIcon />}
+        >
+          Clear All
+        </Button>
+        <Button
+          disabled={uploadedItems < 1}
+          onClick={() => {
+            const element = props.resultsRef.current;
+
+            html2canvas(element).then((canvas) => {
+              const dataUrl = canvas.toDataURL();
+
+              const link = document.createElement("a");
+              link.href = dataUrl;
+              link.download = "IMLC Analyzer";
+              link.click();
+            });
           }}
-        />
-      </LoadingButton>
+          variant="contained"
+          sx={{ ml: 2, mt: 1, mb: 1 }}
+          endIcon={<DownloadIcon />}
+        >
+          Save PNG
+        </Button>
+      </Grid>
     </Box>
   );
 }
