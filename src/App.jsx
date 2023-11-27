@@ -80,17 +80,20 @@ export default function App() {
         for (const fileName in results) {
           const averageLatencies = [];
           const averageBandwidths = [];
+
           for (const delay in results[fileName]) {
             const averageLatency =
               results[fileName][delay]["latency"].reduce(
                 (acc, num) => acc + num,
                 0
               ) / results[fileName][delay]["latency"].length;
+
             const averageBandwidth =
               results[fileName][delay]["bandwidth"].reduce(
                 (acc, num) => acc + num,
                 0
               ) / results[fileName][delay]["bandwidth"].length;
+
             averageLatencies.push(averageLatency);
             averageBandwidths.push(averageBandwidth);
           }
