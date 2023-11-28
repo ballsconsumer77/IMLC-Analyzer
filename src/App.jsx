@@ -153,15 +153,15 @@ export default function App() {
           />
         </Box>
       </Grid>
-      <Grid xs={12} ref={resultsRef}>
-        <Grid xs={12} m={5}>
+      <Grid xs={12} p={5} ref={resultsRef}>
+        <Grid xs={12}>
           <LineGraph
             dataset={latencyData}
             yTitle="Latency (nanoseconds)"
             xTitle="Inject Delay"
           />
         </Grid>
-        <Grid xs={12} m={5}>
+        <Grid xs={12}>
           <LineGraph
             dataset={bandwidthData}
             yTitle="Bandwidth (MB/s)"
