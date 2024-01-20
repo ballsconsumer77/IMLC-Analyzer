@@ -33,7 +33,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-export default function Instructions(props) {
+function Instructions(props) {
   const [uploadedItems, setUploadedItems] = useState(0);
 
   return (
@@ -118,3 +118,5 @@ export default function Instructions(props) {
     </Box>
   );
 }
+
+export default Instructions;

@@ -15,7 +15,7 @@ const initialData = {
   datasets: [],
 };
 
-export default function App() {
+function App() {
   const [isParsingFiles, setIsParsingFiles] = useState(false);
 
   const [latencyData, setLatencyData] = useState(initialData);
@@ -171,3 +171,5 @@ export default function App() {
     </Grid>
   );
 }
+
+export default App;

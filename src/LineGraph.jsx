@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2";
 
-export default function LineGraph(props) {
+function LineGraph(props) {
   return (
     <Line
       data={props.dataset}
@@ -17,3 +17,5 @@ export default function LineGraph(props) {
     ></Line>
   );
 }
+
+export default LineGraph;
