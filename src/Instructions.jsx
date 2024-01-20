@@ -33,7 +33,12 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-function Instructions(props) {
+function Instructions({
+  isParsingFiles,
+  parseFiles,
+  resultsRef,
+  clearAllData,
+}) {
   const [uploadedItems, setUploadedItems] = useState(0);
 
   return (
@@ -69,7 +74,7 @@ function Instructions(props) {
         <LoadingButton
           component="label"
           variant="contained"
-          loading={props.isParsingFiles}
+          loading={isParsingFiles}
           loadingPosition="end"
           sx={{ ml: 2, mt: 1, mb: 1 }}
           endIcon={<CloudUploadIcon />}
@@ -81,13 +86,13 @@ function Instructions(props) {
             multiple
             onChange={(e) => {
               setUploadedItems(e.target.files.length);
-              props.parseFiles(Array.from(e.target.files));
+              parseFiles(Array.from(e.target.files));
             }}
           />
         </LoadingButton>
         <Button
           disabled={uploadedItems < 1}
-          onClick={() => props.clearAllData()}
+          onClick={() => clearAllData()}
           variant="contained"
           sx={{ ml: 2, mt: 1, mb: 1 }}
           endIcon={<ClearAllIcon />}
@@ -97,7 +102,7 @@ function Instructions(props) {
         <Button
           disabled={uploadedItems < 1}
           onClick={() => {
-            const element = props.resultsRef.current;
+            const element = resultsRef.current;
 
             html2canvas(element).then((canvas) => {
               const dataUrl = canvas.toDataURL();

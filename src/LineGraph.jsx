@@ -1,16 +1,16 @@
 import { Line } from "react-chartjs-2";
 
-function LineGraph(props) {
+function LineGraph({ dataset, yTitle, xTitle }) {
   return (
     <Line
-      data={props.dataset}
+      data={dataset}
       options={{
         scales: {
           x: {
-            title: { display: true, text: props.xTitle },
+            title: { display: true, text: xTitle },
           },
           y: {
-            title: { display: true, text: props.yTitle },
+            title: { display: true, text: yTitle },
           },
         },
       }}
