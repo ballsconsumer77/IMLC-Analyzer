@@ -8,7 +8,6 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import Typography from "@mui/material/Typography";
 import html2canvas from "html2canvas";
 import styled from "@emotion/styled";
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 
@@ -39,9 +38,8 @@ function Instructions({
   parseFiles,
   resultsRef,
   clearAllData,
+  currentlyUploadedItems,
 }) {
-  const [uploadedItems, setUploadedItems] = useState(0);
-
   return (
     <Box sx={{ ...codeBlockStyle }}>
       <Typography variant="body1" component="span" paragraph>
@@ -74,6 +72,7 @@ function Instructions({
       <Grid container>
         <LoadingButton
           component="label"
+          disabled={currentlyUploadedItems > 0}
           variant="contained"
           loading={isParsingFiles}
           loadingPosition="end"
@@ -86,13 +85,12 @@ function Instructions({
             accept=".txt"
             multiple
             onChange={(e) => {
-              setUploadedItems(e.target.files.length);
               parseFiles(Array.from(e.target.files));
             }}
           />
         </LoadingButton>
         <Button
-          disabled={uploadedItems < 1}
+          disabled={currentlyUploadedItems < 1}
           onClick={() => clearAllData()}
           variant="contained"
           sx={{ ml: 2, mt: 1, mb: 1 }}
@@ -101,7 +99,7 @@ function Instructions({
           Clear All
         </Button>
         <Button
-          disabled={uploadedItems < 1}
+          disabled={currentlyUploadedItems < 1}
           onClick={() => {
             const element = resultsRef.current;
 
@@ -130,6 +128,7 @@ Instructions.propTypes = {
   parseFiles: PropTypes.func.isRequired,
   resultsRef: PropTypes.object.isRequired,
   clearAllData: PropTypes.func.isRequired,
+  currentlyUploadedItems: PropTypes.number.isRequired,
 };
 
 export default Instructions;

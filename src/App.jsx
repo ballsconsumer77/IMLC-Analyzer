@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
 import Grid from "@mui/material/Grid";
 import Instructions from "./Instructions.jsx";
@@ -149,6 +150,7 @@ function App() {
             parseFiles={parseFiles}
             resultsRef={resultsRef}
             clearAllData={ClearAllData}
+            currentlyUploadedItems={latencyData["datasets"].length}
           />
         </Box>
       </Grid>
