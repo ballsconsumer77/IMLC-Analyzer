@@ -10,6 +10,7 @@ import html2canvas from "html2canvas";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import Box from "@mui/material/Box";
+import PropTypes from "prop-types";
 
 const codeBlockStyle = {
   padding: 1,
@@ -123,5 +124,12 @@ function Instructions({
     </Box>
   );
 }
+
+Instructions.propTypes = {
+  isParsingFiles: PropTypes.bool.isRequired,
+  parseFiles: PropTypes.func.isRequired,
+  resultsRef: PropTypes.object.isRequired,
+  clearAllData: PropTypes.func.isRequired,
+};
 
 export default Instructions;

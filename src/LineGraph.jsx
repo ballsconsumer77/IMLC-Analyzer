@@ -1,4 +1,5 @@
 import { Line } from "react-chartjs-2";
+import PropTypes from "prop-types";
 
 function LineGraph({ dataset, yTitle, xTitle }) {
   return (
@@ -17,5 +18,14 @@ function LineGraph({ dataset, yTitle, xTitle }) {
     ></Line>
   );
 }
+
+LineGraph.propTypes = {
+  dataset: PropTypes.shape({
+    labels: PropTypes.array,
+    datasets: PropTypes.array,
+  }),
+  yTitle: PropTypes.string.isRequired,
+  xTitle: PropTypes.string.isRequired,
+};
 
 export default LineGraph;
