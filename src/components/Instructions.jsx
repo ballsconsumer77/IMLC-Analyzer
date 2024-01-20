@@ -1,6 +1,5 @@
-import { Button, Grid } from "@mui/material";
-
-import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import ClearAllIcon from "@mui/icons-material/ClearAll";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -10,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import html2canvas from "html2canvas";
 import styled from "@emotion/styled";
 import { useState } from "react";
+import Box from "@mui/material/Box";
 
 const codeBlockStyle = {
   padding: 1,

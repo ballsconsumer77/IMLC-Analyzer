@@ -1,11 +1,10 @@
-import { Box, Container } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-
+import { useRef, useState } from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import Grid from "@mui/material/Grid";
 import Instructions from "./components/Instructions.jsx";
 import LineGraph from "./components/LineGraph.jsx";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 const datasetTemplate = {
   pointRadius: 2,
@@ -85,13 +84,13 @@ export default function App() {
             const averageLatency =
               results[fileName][delay]["latency"].reduce(
                 (acc, num) => acc + num,
-                0,
+                0
               ) / results[fileName][delay]["latency"].length;
 
             const averageBandwidth =
               results[fileName][delay]["bandwidth"].reduce(
                 (acc, num) => acc + num,
-                0,
+                0
               ) / results[fileName][delay]["bandwidth"].length;
 
             averageLatencies.push(averageLatency);
