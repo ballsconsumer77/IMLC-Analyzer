@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { Chart as ChartJS } from "chart.js/auto";
 import Grid from "@mui/material/Grid";
-import Instructions from "./components/Instructions.jsx";
-import LineGraph from "./components/LineGraph.jsx";
+import Instructions from "./Instructions.jsx";
+import LineGraph from "./LineGraph.jsx";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
